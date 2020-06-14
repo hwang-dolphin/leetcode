@@ -29,6 +29,11 @@ int main()
     {
         cout << i << " ";
     }
+
+    cout << endl;
+
+    cout << __cplusplus << endl;
+
     
     return 0;
 }
