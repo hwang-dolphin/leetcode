@@ -31,9 +31,6 @@ int main()
     }
 
     cout << endl;
-
-    cout << __cplusplus << endl;
-
     
     return 0;
 }
