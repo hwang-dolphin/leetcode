@@ -24,7 +24,8 @@ bool hasAllCodes(string s, int k)
 {
     // hint1:  we need to check only all sub-strings of length k
     // hint2:  the number of distinct sub-strings should be exactly 2^k
-    
+
+    // sliding window of size k, number of unique sub-strings should be exactly 2^k     
     
     if (s.size() < k)
     {
