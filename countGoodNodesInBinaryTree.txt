@@ -1,0 +1,67 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution 
+{
+public:
+    void dfs(TreeNode * & ptr, int & acc, vector<int> & myVect)
+    {
+        if (ptr == 0)
+        {
+            return;
+        }
+        
+        myVect.push_back(ptr->val);
+        
+        for (int i = 0; i < myVect.size(); i++)
+        {
+            if (myVect[i] > myVect[myVect.size() - 1])
+            {
+                break;
+            }
+                
+            if (i == myVect.size() - 1)
+            {
+                acc++;
+            }
+        }
+        
+        if (ptr->left == 0 && ptr->right == 0)
+        {
+            return;
+        }
+        
+        else
+        {
+            if (ptr->left != 0)
+            {
+                dfs(ptr->left, acc, myVect);
+                myVect.erase(myVect.end() - 1);
+            }
+            
+            if (ptr->right != 0)
+            {
+                dfs(ptr->right, acc, myVect);
+                myVect.erase(myVect.end() - 1);
+            }
+        }
+    }
+    
+    int goodNodes(TreeNode* root) 
+    {
+        int acc = 0;
+        vector<int> myVect;
+        
+        dfs(root, acc, myVect);
+        
+        return acc;
+    }
+};

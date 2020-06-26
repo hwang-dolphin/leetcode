@@ -1,0 +1,94 @@
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    void dfs(TreeNode * & ptr, int & counter, int & maxCounter)
+    {
+        if (ptr == 0)
+        {
+            return;
+        }
+        
+        counter++;
+        maxCounter = max(counter, maxCounter);
+        
+        if (ptr->left == 0 && ptr->right == 0)
+        {
+            return;
+        }
+        
+        else
+        {
+            if (ptr->left != 0)
+            {
+                dfs(ptr->left, counter, maxCounter);
+                counter--;
+            }
+            
+            if (ptr->right != 0)
+            {
+                dfs(ptr->right, counter, maxCounter);
+                counter--;
+            }
+        }
+    }
+    
+    void dfs2(TreeNode * & ptr, int & counter, int & maxCounter, int & acc)
+    {
+        if (ptr == 0)
+        {
+            return;
+        }
+        
+        counter++;
+        
+        if (ptr->left == 0 && ptr->right == 0 )
+        {
+            if (counter == maxCounter)
+            {
+                acc = acc + ptr->val;
+            }
+            return;
+        }
+        
+        else
+        {
+            if (ptr->left != 0)
+            {
+                dfs2(ptr->left, counter, maxCounter, acc);
+                counter--;
+            }
+            
+            if (ptr->right != 0)
+            {
+                dfs2(ptr->right, counter, maxCounter, acc);
+                counter--;
+            }
+        }
+    }
+    
+    int deepestLeavesSum(TreeNode* root) 
+    {
+        int maxCounter = 0;
+        int counter = 0;
+        int acc = 0;
+        
+        dfs(root, counter, maxCounter);
+        
+        counter = 0;
+        dfs2(root, counter, maxCounter, acc);
+        
+        return acc;
+    }
+};
