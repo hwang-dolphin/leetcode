@@ -1,8 +1,8 @@
-
+"use strict";
 
 var queryTime = 4;
 var startTime = [1,2,3];
-var queryTime = [3,2,7];
+var endTime = [3,2,7];
 
 var busyStudent = function(startTime, endTime, queryTime) 
 {
@@ -19,6 +19,7 @@ var busyStudent = function(startTime, endTime, queryTime)
     return counter;
 };
 
+var answer = busyStudent(startTime, endTime, queryTime);
 
-
+console.log(answer);
 
