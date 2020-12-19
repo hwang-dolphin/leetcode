@@ -1,5 +1,9 @@
+# ignore files
+
 main.cpp
 main.o
 main*
 a.out*
+
+
 .DS_Store
